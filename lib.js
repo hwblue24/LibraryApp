@@ -13,24 +13,41 @@ Book.prototype.info = function () {
 };
 
 
-function addBookToLibrary () {
-    title = prompt('Provide title of book');
-    author = prompt('Provide author\'s name');
-    pages = prompt('Provide length of book in pages'); 
-    read = prompt(`Have you read the book?" `);
-    newBook = new Book (title,author,pages,read); 
+
+
+function addBookToLibrary (title, author, pages, read) {
+    newBook = new Book (title, author, pages, read)
     myLibrary.push(newBook);
-    return myLibrary
-
+    let container = document.querySelector(".container");
+    let row = document.createElement("div");
+    row.textContent = `Title: ${newBook.title}, Author:${newBook.author}, Pages: ${newBook.pages}, Read: ${newBook.read}`;
+    container.appendChild(row);
+    
 }
 
-function bookTables(myLibrary) { 
-    for (let books of myLibrary) {
-        let container = document.querySelector(".container");
-        content = document.createElement("div");
-        content.textContent = `Title: ${books.title}, Author:${books.author}, Pages: ${books.pages}, Read: ${books.read}`;
-        container.appendChild(content);
 
-    }
-}
+const dialog = document.querySelector("#bookDialog");
+const addBook = document.querySelector("#addBook");
+const submit = document.querySelector("#submit");
+
+addBook.addEventListener("click", () => {
+    dialog.showModal(); 
+});
+
+submit.addEventListener("click", (event) => {
+    let title = document.querySelector("#book_title");
+    title = title.value;
+    let author = document.querySelector("#book_author");
+    author = author.value;
+    let pages = document.querySelector("#book_pages")
+    pages = pages.value; 
+    let read = document.querySelector("#read");
+    read = read.value;
+    addBookToLibrary(title, author, pages, read)
+    event.preventDefault(); 
+    dialog.close();
+});
+
+
+
 

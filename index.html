@@ -3,12 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src = 'lib.js'></script>
+    <script async src = 'lib.js'></script>
     <link rel="stylesheet" href="lib.css">
     <title>Document</title>
 </head>
 <body>
     <div class="container"></div>
+    
+    <button id="addBook">NEW BOOK</button>
+    <h1 class="outPut"></h1>
+
+    <dialog id="bookDialog" >
+        
+        <form>
+            <div class="title">
+                <label for="book_title">Book Title:</label>
+                <input type="text" id="book_title" placeholder="Lord Of The Rings" name="book_title">
+            </div>
+            <div class="author">
+                <label for="book_author">Author:</label>
+                <input type="text" id="book_author" placeholder="Tolken" name="book_author">
+            </div>
+            <div class="pages">
+                <label for="book_pages">Pages:</label>
+                <input type="text" id="book_pages" placeholder="499" name="book_pages">
+            </div>
+            <div class="read">
+                <label for="read">Completed:</label>
+                <input type="text" id="read" placeholder="Yes or No" name="read">
+            </div>
+            <button type= "submit" id="submit">Submit</button>
+        </form>
+        
+    </dialog> 
+    
 
 
 </body>
