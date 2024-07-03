@@ -43,12 +43,23 @@ function addBookToLibrary (title, author, pages, read) {
 function renderLibrary(newBook) { 
     let container = document.querySelector(".container");
     let row = document.createElement("div");
+    row.classList.add("row");
     row.textContent = `Title: ${newBook.title}, Author:${newBook.author}, Pages: ${newBook.pages}, Read: ${newBook.read}`;
     container.appendChild(row);
+
+    let rowBtn = document.createElement("button")
+    rowBtn.classList.add('rowBtn');
+    rowBtn.textContent = 'Remove'; 
+    row.appendChild(rowBtn);
 }
 
+const container = document.querySelector(".container");
 
+container.addEventListener ("click", (e) => {
+        if(e.target.className === 'rowBtn') {
+            const container = document.querySelector(".container");
+            let row = document.querySelector(".row");
+            container.removeChild(row);
+        }
 
-
-
-
+})
