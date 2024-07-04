@@ -9,8 +9,9 @@ function Book(title, author, pages, read){
 
 //prototype defined on prototype for efficiency 
 Book.prototype.info = function () { 
-    return (`${this.title}, written by ${this.author}, has ${this.pages}, and you have ${this.read} it`)
+    return (`Title: ${this.title} Author: ${this.author} Pages: ${this.pages} Read: ${this.read}`)
 };
+
 
 const dialog = document.querySelector("#bookDialog");
 const addBook = document.querySelector("#addBook");
@@ -41,25 +42,38 @@ function addBookToLibrary (title, author, pages, read) {
 }
 
 function renderLibrary(newBook) { 
-    let container = document.querySelector(".container");
-    let row = document.createElement("div");
-    row.classList.add("row");
-    row.textContent = `Title: ${newBook.title}, Author:${newBook.author}, Pages: ${newBook.pages}, Read: ${newBook.read}`;
-    container.appendChild(row);
+    let libDataContainer = document.querySelector(".libDataContainer");
+    let rowData = document.createElement("div");
+    rowData.classList.add("rowData");
+    rowData.textContent = newBook.info(); 
+    libDataContainer.appendChild(rowData);
 
-    let rowBtn = document.createElement("button")
-    rowBtn.classList.add('rowBtn');
-    rowBtn.textContent = 'Remove'; 
-    row.appendChild(rowBtn);
+    let readBtn = document.createElement("button")
+    readBtn.classList.add('readBtn');
+    readBtn.textContent = 'Read'; 
+    rowData.appendChild(readBtn);
+
+    let rmvBtn = document.createElement("button")
+    rmvBtn.classList.add('rmvBtn');
+    rmvBtn.textContent = 'Remove'; 
+    rowData.appendChild(rmvBtn);
+
+
 }
 
-const container = document.querySelector(".container");
+const libDataContainer = document.querySelector(".libDataContainer");
 
-container.addEventListener ("click", (e) => {
-        if(e.target.className === 'rowBtn') {
-            const container = document.querySelector(".container");
-            let row = document.querySelector(".row");
-            container.removeChild(row);
+libDataContainer.addEventListener ("click", (e) => {
+        if(e.target.className === 'rmvBtn') {
+            const libDataContainer = document.querySelector(".libDataContainer");
+            let rowData = document.querySelector(".rowData");
+            libDataContainer.removeChild(rowData);
         }
 
 })
+
+
+//Book.prototype.read = function () {
+    //if ()
+    //return (`Title: ${this.title} Author: ${this.author} Pages: ${this.pages} Read: ${this.read}`)
+//};

@@ -1,6 +1,27 @@
-.parentContainer { 
-    display:flex;
+
+.libraryBody { 
+    height:100vh; 
+    width:100vw;
+    display: grid;
+    grid-template-rows:1fr 2fr 1fr; 
     justify-content: space-around;
+    justify-items: center;
+    grid-template-areas: 
+        "title"
+        "data"
+        "button"
+
 
 }
 
+.libTitle { 
+    grid-area:title;
+}
+
+.libData { 
+    grid-area:data; 
+}
+
+.addBookContainer { 
+    grid-area:button; 
+}
