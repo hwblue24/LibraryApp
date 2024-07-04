@@ -72,6 +72,14 @@ libDataContainer.addEventListener ("click", (e) => {
 
 })
 
+libDataContainer.addEventListener ("click", (e) => {
+    if(e.target.textContent === 'Read') {
+        e.target.textContent = 'Not Read'
+    } else if (e.target.textContent === 'Not Read') {
+        e.target.textContent = 'Read'
+    };
+
+})
 
 //Book.prototype.read = function () {
     //if ()
