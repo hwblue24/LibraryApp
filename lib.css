@@ -1,9 +1,10 @@
-
 .libraryBody { 
     height:100vh; 
     width:100vw;
+    background-image: linear-gradient(180deg, #3900a3, #cc01b1,#fff48d);
     display: grid;
     grid-template-rows:1fr 2fr 1fr; 
+    grid-template-columns: 1fr;
     justify-content: space-around;
     justify-items: center;
     grid-template-areas: 
@@ -16,12 +17,52 @@
 
 .libTitle { 
     grid-area:title;
+    display:flex; 
+    align-items: center;
 }
 
 .libData { 
-    grid-area:data; 
+    grid-area:data;
+    width:100%;
+
 }
 
+.libDataContainer { 
+    display:grid;
+    height:100%;
+    grid-template-rows:1fr 1fr ; 
+    grid-template-columns: 1fr 1fr ;
+}
+
+.rowData { 
+    display:flex; 
+}
+
+
+
 .addBookContainer { 
+    width:100%;
     grid-area:button; 
+    display:grid;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+
+
+#addBook, 
+h1 { 
+    letter-spacing: 1.1rem;
+    padding:1.5rem;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    background-color:inherit;
+    color:azure;
+    border: solid azure;
+   
+}
+
+#addBook:hover { 
+    font-size:1.8rem;
 }
