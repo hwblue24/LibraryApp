@@ -9,7 +9,7 @@ function Book(title, author, pages, read){
 
 //prototype defined on prototype for efficiency 
 Book.prototype.info = function () { 
-    return (`Title: ${this.title} Author: ${this.author} Pages: ${this.pages} Read: ${this.read}`)
+    return (`Title: ${this.title} Author: ${this.author} Pages: ${this.pages} Read:`)
 };
 
 
@@ -32,8 +32,6 @@ submit.addEventListener("click", (event) => {
 });
 
 
-
-
 function addBookToLibrary (title, author, pages, read) {
     const newBook = new Book (title, author, pages, read)
     myLibrary.push(newBook);
@@ -48,10 +46,22 @@ function renderLibrary(newBook) {
     rowData.textContent = newBook.info(); 
     libDataContainer.appendChild(rowData);
 
+    let rowStatus = document.createElement("div");
+    rowStatus.classList.add("rowStatus"); 
+    rowStatus.textContent = newBook.read;
+    rowData.appendChild(rowStatus);
+
+
     let readBtn = document.createElement("button")
     readBtn.classList.add('readBtn');
-    readBtn.textContent = 'Read'; 
-    rowData.appendChild(readBtn);
+    if (rowStatus.textContent === 'no') {
+        readBtn.textContent = 'Read'; 
+        rowData.appendChild(readBtn);
+    } else { 
+        readBtn.textContent = 'Not Read'; 
+        rowData.appendChild(readBtn);
+    }
+    
 
     let rmvBtn = document.createElement("button")
     rmvBtn.classList.add('rmvBtn');
@@ -63,25 +73,28 @@ function renderLibrary(newBook) {
 
 const libDataContainer = document.querySelector(".libDataContainer");
 
+
+
 libDataContainer.addEventListener ("click", (e) => {
-        if(e.target.className === 'rmvBtn') {
-            const libDataContainer = document.querySelector(".libDataContainer");
-            let rowData = document.querySelector(".rowData");
-            libDataContainer.removeChild(rowData);
-        }
+    if(e.target.className === 'rmvBtn') {
+        const libDataContainer = document.querySelector(".libDataContainer");
+        let rowData = document.querySelector(".rowData");
+        libDataContainer.removeChild(rowData);
+    }
 
 })
 
+// Toggle read status button click event listener
 libDataContainer.addEventListener ("click", (e) => {
     if(e.target.textContent === 'Read') {
-        e.target.textContent = 'Not Read'
+        e.target.textContent = 'Not Read';
+        const rowData = e.target.closest('.rowData');
+        const rowStatus = rowData.querySelector('.rowStatus');
+        rowStatus.textContent = 'yes';
     } else if (e.target.textContent === 'Not Read') {
-        e.target.textContent = 'Read'
+        e.target.textContent = 'Read';
+        const rowData = e.target.closest('.rowData');
+        const rowStatus = rowData.querySelector('.rowStatus');
+        rowStatus.textContent = 'no'
     };
-
 })
-
-//Book.prototype.read = function () {
-    //if ()
-    //return (`Title: ${this.title} Author: ${this.author} Pages: ${this.pages} Read: ${this.read}`)
-//};
