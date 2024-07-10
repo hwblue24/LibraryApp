@@ -9,7 +9,8 @@ function Book(title, author, pages, read){
 
 //prototype defined on prototype for efficiency 
 Book.prototype.info = function () { 
-    return (`Title: ${this.title} Author: ${this.author} Pages: ${this.pages} Read:`)
+    return (`${this.title} by ${this.author} Pages: ${this.pages}`)
+    
 };
 
 
@@ -34,8 +35,16 @@ submit.addEventListener("click", (event) => {
 
 function addBookToLibrary (title, author, pages, read) {
     const newBook = new Book (title, author, pages, read)
-    myLibrary.push(newBook);
-    renderLibrary(newBook);
+    //function to handle the number of books added to library  
+    if (myLibrary.length <= 7 ) {
+        renderLibrary(newBook);
+        myLibrary.push(newBook);
+
+    }else {
+        const dialog = document.querySelector(".libraryFull");
+        dialog.showModal();
+        
+    }
     
 }
 
@@ -48,13 +57,13 @@ function renderLibrary(newBook) {
 
     let rowStatus = document.createElement("div");
     rowStatus.classList.add("rowStatus"); 
-    rowStatus.textContent = newBook.read;
+    rowStatus.textContent = `Read: ${newBook.read}`;
     rowData.appendChild(rowStatus);
 
 
     let readBtn = document.createElement("button")
     readBtn.classList.add('readBtn');
-    if (rowStatus.textContent === 'no') {
+    if (rowStatus.textContent === 'Read: no') {
         readBtn.textContent = 'Read'; 
         rowData.appendChild(readBtn);
     } else { 
@@ -71,15 +80,17 @@ function renderLibrary(newBook) {
 
 }
 
+//handles removing libdata 
 const libDataContainer = document.querySelector(".libDataContainer");
-
-
 
 libDataContainer.addEventListener ("click", (e) => {
     if(e.target.className === 'rmvBtn') {
+        myLibrary.pop();
+        console.log(myLibrary.length);
         const libDataContainer = document.querySelector(".libDataContainer");
-        let rowData = document.querySelector(".rowData");
+        let rowData = e.target.closest('.rowData');
         libDataContainer.removeChild(rowData);
+        
     }
 
 })
@@ -90,13 +101,19 @@ libDataContainer.addEventListener ("click", (e) => {
         e.target.textContent = 'Not Read';
         const rowData = e.target.closest('.rowData');
         const rowStatus = rowData.querySelector('.rowStatus');
-        rowStatus.textContent = 'yes';
+        rowStatus.textContent = 'Read: yes';
     } else if (e.target.textContent === 'Not Read') {
         e.target.textContent = 'Read';
         const rowData = e.target.closest('.rowData');
         const rowStatus = rowData.querySelector('.rowStatus');
-        rowStatus.textContent = 'no'
+        rowStatus.textContent = 'Read: no'
     };
 })
 
 
+const dialoglibraryFull = document.querySelector(".libraryFull");
+const removeLibFull = document.querySelector(".libraryFull button")
+
+removeLibFull.addEventListener("click", () => { 
+    dialoglibraryFull.close();
+});

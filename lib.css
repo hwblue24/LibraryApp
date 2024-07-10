@@ -1,17 +1,25 @@
-.libraryBody { 
-    height:100vh; 
+html,
+body { 
+    height:100vh;
     width:100vw;
+    margin:0;
+    padding:0;
     background-image: linear-gradient(180deg, #3900a3, #cc01b1,#fff48d);
+    
+}
+
+.libraryBody { 
+    height:100%;
+    width:100%;
     display: grid;
-    grid-template-rows:1fr 2fr 1fr; 
-    grid-template-columns: 1fr;
+    grid-template-rows:1fr 600px 1fr; 
+    grid-template-columns: 100vw;
     justify-content: space-around;
     justify-items: center;
     grid-template-areas: 
         "title"
         "data"
         "button"
-
 
 }
 
@@ -30,12 +38,43 @@
 .libDataContainer { 
     display:grid;
     height:100%;
-    grid-template-rows:1fr 1fr ; 
-    grid-template-columns: 1fr 1fr ;
+    grid-template-rows:1fr 1fr 1fr 1fr  ; 
+    grid-template-columns: 1fr 1fr  1fr 1fr;
 }
 
 .rowData { 
     display:flex; 
+    flex-direction: column;
+    letter-spacing: 0.8rem;
+    padding:0.8rem;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    background-color:inherit;
+    color:azure;
+    border: solid azure;
+}
+
+.rowStatus { 
+    letter-spacing: 0.8rem;
+    padding:0.8rem;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    background-color:inherit;
+    color:azure;
+    border: solid azure;
+    align-self:flex-start;
+}
+
+.rowData button { 
+    letter-spacing: 0.8rem;
+    padding:0.8rem;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    background-color:inherit;
+    color:azure;
+    border: solid azure;
+    align-self:flex-start;
+
 }
 
 
@@ -65,4 +104,65 @@ h1 {
 
 #addBook:hover { 
     font-size:1.8rem;
+}
+
+
+.libraryFull[open] { 
+    display:flex; 
+    flex-direction: column;
+
+}.libraryFull button { 
+    align-self: end;
+    width:fit-content;
+    background-color:azure;
+    color:black;
+    border: solid black;
+    font-size: 0.8rem;
+
+}
+
+
+.lbfull { 
+    letter-spacing: 1.1rem;
+    padding:1.5rem;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    background-color:azure;
+    color:black;
+    border: solid black;
+
+}
+
+#bookDialog form { 
+    display:flex;
+    flex-direction: column;
+    align-items: flex-end;
+    letter-spacing: 1.1rem;
+    padding:1.5rem;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    background-color:azure;
+    color:black;
+    border: solid black;
+}
+
+#submit {
+    background-color:azure;
+    color:black;
+    border: solid black;
+    letter-spacing: 0.8rem;
+    padding:0.8rem;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    align-self:flex-end;
+    margin-top:10px; 
+    width:185px; 
+
+}
+
+
+#bookDialog div { 
+    display:flex; 
+    justify-content: space-between;
+
 }
