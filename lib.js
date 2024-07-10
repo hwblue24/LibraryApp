@@ -35,15 +35,17 @@ submit.addEventListener("click", (event) => {
 
 function addBookToLibrary (title, author, pages, read) {
     const newBook = new Book (title, author, pages, read)
+    myLibrary.push(newBook);
     //function to handle the number of books added to library  
-    if (myLibrary.length <= 7 ) {
+    if (myLibrary.length < 9 ) {
         renderLibrary(newBook);
-        myLibrary.push(newBook);
+        
+        
 
     }else {
         const dialog = document.querySelector(".libraryFull");
         dialog.showModal();
-        
+        myLibrary.pop();
     }
     
 }
