@@ -1,11 +1,20 @@
-const myLibrary = []; 
+class Library {
+    constructor() {
+        this.bookList = []
+    }
+    //addBook () {}
 
-function Book(title, author, pages, read){ 
-    this.title = title; 
-    this.author=author; 
-    this.pages= pages; 
-    this.read = read;
-}
+    
+} 
+
+class Book {
+    constructor( title, author, pages, read) {
+        this.title = title; 
+        this.author=author; 
+        this.pages= pages; 
+        this.read = read;
+    }
+} 
 
 //prototype defined on prototype for efficiency 
 Book.prototype.info = function () { 
