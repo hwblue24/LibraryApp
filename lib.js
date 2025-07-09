@@ -11,16 +11,8 @@ class Library {
     displayBooks () {
         return this.bookList 
     }
- 
 
-    
 } 
-
-function checkingAgainstBooks (bookinstance) { 
-    return bookinstance !== bookObj
-}
-
-thisbookList.filter(checkingAgainstBooks)
 
 class Book {
     constructor( title, author, pages, read) {
@@ -31,7 +23,9 @@ class Book {
     }
 } 
 
-const main = new Library(); 
+
+
+/*const main = new Library(); 
 const first = new Book("Lord of the rings", "Tolken", 244,140); 
 const second = new Book ("Things fall apart", "Chiba", 3333, 34);
 const third = new  Book ("Portrait of Dorian Gray", "unkown", 453, 343);
@@ -40,51 +34,55 @@ main.addBook(second);
 main.addBook(third);
 console.log(main.displayBooks());
 main.removeBook(second)
-console.log(main.displayBooks());
+console.log(main.displayBooks());*/
 
-
-/*
+const myLibrary = new Library();
+// selects this items from DOM 
 const dialog = document.querySelector("#bookDialog");
 const addBook = document.querySelector("#addBook");
 const submit = document.querySelector("#submit");
 
+//selects start and shows dialog box 
 addBook.addEventListener("click", () => {
     dialog.showModal(); 
 });
 
+//dialogue box for insertion book information 
 submit.addEventListener("click", (event) => {
     let title = document.querySelector("#book_title").value;
     let author = document.querySelector("#book_author").value;
     let pages = document.querySelector("#book_pages").value;
     let read = document.querySelector("#read").value;
-    addBookToLibrary(title, author, pages, read)
+    const newBook = new Book ( title, author, pages, read); 
+    myLibrary.addBook(newBook);
+    console.log(myLibrary.displayBooks())
+    renderLibrary(newBook);
     event.preventDefault(); 
     dialog.close();
 });
 
 
-function addBookToLibrary (title, author, pages, read) {
+
+/*function addBookToLibrary (title, author, pages, read) {
     const newBook = new Book (title, author, pages, read)
     myLibrary.push(newBook);
     //function to handle the number of books added to library  
     if (myLibrary.length < 9 ) {
         renderLibrary(newBook);
         
-        
-
     }else {
         const dialog = document.querySelector(".libraryFull");
         dialog.showModal();
         myLibrary.pop();
     }
     
-}
+}*/
 
 function renderLibrary(newBook) { 
     let libDataContainer = document.querySelector(".libDataContainer");
     let rowData = document.createElement("div");
     rowData.classList.add("rowData");
-    rowData.textContent = newBook.info(); 
+    rowData.textContent = (`${newBook.title} by ${newBook.author} Pages: ${newBook.pages}`); 
     libDataContainer.appendChild(rowData);
 
     let rowStatus = document.createElement("div");
@@ -113,7 +111,7 @@ function renderLibrary(newBook) {
 }
 
 //handles removing libdata 
-const libDataContainer = document.querySelector(".libDataContainer");
+/*const libDataContainer = document.querySelector(".libDataContainer");
 
 libDataContainer.addEventListener ("click", (e) => {
     if(e.target.className === 'rmvBtn') {
@@ -125,9 +123,9 @@ libDataContainer.addEventListener ("click", (e) => {
         
     }
 
-})
+})*/
 
-// Toggle read status button click event listener
+/* Toggle read status button click event listener
 libDataContainer.addEventListener ("click", (e) => {
     if(e.target.textContent === 'Read') {
         e.target.textContent = 'Not Read';
@@ -148,4 +146,4 @@ const removeLibFull = document.querySelector(".libraryFull button")
 
 removeLibFull.addEventListener("click", () => { 
     dialoglibraryFull.close();
-}); */
+});*/
