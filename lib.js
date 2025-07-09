@@ -2,27 +2,48 @@ class Library {
     constructor() {
         this.bookList = []
     }
-    //addBook () {}
+    addBook (bookObj) {
+        return this.bookList.push(bookObj); 
+    }
+    removeBook(bookObj) {
+        return this.bookList = this.bookList.filter(bookinstance => bookinstance !== bookObj); 
+    }
+    displayBooks () {
+        return this.bookList 
+    }
+ 
 
     
 } 
+
+function checkingAgainstBooks (bookinstance) { 
+    return bookinstance !== bookObj
+}
+
+thisbookList.filter(checkingAgainstBooks)
 
 class Book {
     constructor( title, author, pages, read) {
         this.title = title; 
-        this.author=author; 
-        this.pages= pages; 
+        this.author = author; 
+        this.pages = pages; 
         this.read = read;
     }
 } 
 
-//prototype defined on prototype for efficiency 
-Book.prototype.info = function () { 
-    return (`${this.title} by ${this.author} Pages: ${this.pages}`)
-    
-};
+const main = new Library(); 
+const first = new Book("Lord of the rings", "Tolken", 244,140); 
+const second = new Book ("Things fall apart", "Chiba", 3333, 34);
+const third = new  Book ("Portrait of Dorian Gray", "unkown", 453, 343);
+main.addBook(first);
+main.addBook(second);
+main.addBook(third);
+console.log(main.displayBooks());
+main.removeBook(second)
+console.log(main.displayBooks());
 
 
+/*
 const dialog = document.querySelector("#bookDialog");
 const addBook = document.querySelector("#addBook");
 const submit = document.querySelector("#submit");
@@ -127,4 +148,4 @@ const removeLibFull = document.querySelector(".libraryFull button")
 
 removeLibFull.addEventListener("click", () => { 
     dialoglibraryFull.close();
-});
+}); */
