@@ -26,10 +26,12 @@ class Book {
 
 
 const myLibrary = new Library();
+
+
 // selects this items from DOM 
 const dialog = document.querySelector("#bookDialog");
 const addBook = document.querySelector("#addBook");
-const submit = document.querySelector("#submit");
+const form = document.getElementById("bookForm");
 
 //selects start and shows dialog box 
 addBook.addEventListener("click", () => {
@@ -45,14 +47,18 @@ removeLibFull.addEventListener("click", () => {
     dialoglibraryFull.close();
 });
 
-//dialogue box for insertion book information 
-submit.addEventListener("click", (event) => {
+//Create book Object instances 
+function createBookInstance () {
     let title = document.querySelector("#book_title").value;
     let author = document.querySelector("#book_author").value;
     let pages = document.querySelector("#book_pages").value;
     let read = document.querySelector("#read").value;
     const newBook = new Book ( title, author, pages, read); 
     myLibrary.addBook(newBook);
+    libraryFullCheck(newBook)
+}
+
+function libraryFullCheck (newBook) {
     if (myLibrary.bookList.length < 9 ) {
         renderLibrary(newBook);
     }else {
@@ -60,15 +66,8 @@ submit.addEventListener("click", (event) => {
         dialog.showModal();
         myLibrary.bookList.pop();
     }
-    
-    event.preventDefault(); 
-    dialog.close();
-    
-});
 
-
-
-
+}
 
 
 
@@ -107,6 +106,18 @@ function renderLibrary(newBook) {
 
 
 }
+
+
+//dialogue box for insertion book information 
+form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    createBookInstance ();
+    dialog.close();
+    
+});
+
+
+
 
 //handles removing libdata 
 const libDataContainer = document.querySelector(".libDataContainer");
