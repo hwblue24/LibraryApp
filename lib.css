@@ -170,3 +170,9 @@ h1 {
     justify-content: space-between;
 
 }
+
+input:invalid {
+    background-color:red;
+
+}
+

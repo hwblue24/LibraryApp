@@ -58,6 +58,7 @@ function createBookInstance () {
     libraryFullCheck(newBook)
 }
 
+//checks to ese if library is full display error message
 function libraryFullCheck (newBook) {
     if (myLibrary.bookList.length < 9 ) {
         renderLibrary(newBook);
@@ -110,10 +111,9 @@ function renderLibrary(newBook) {
 
 //dialogue box for insertion book information 
 form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    createBookInstance ();
+    event.preventDefault(); //stops default form
+    createBookInstance (); //creates instance from inputs
     dialog.close();
-    
 });
 
 
